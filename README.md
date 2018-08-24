@@ -1,15 +1,14 @@
 # Compiler-Ply
 
-
-## Modulos:
-
-### Analizador Léxico
-
-### Analizador Sintáctico
-
-### Analizador Semántico
-
 Diseño y construcción de un compilador en lenguaje python usando librera PLY
+
+### Modulos:
+
+#### Analizador Léxico
+
+#### Analizador Sintáctico
+
+#### Analizador Semántico
 
 
 
