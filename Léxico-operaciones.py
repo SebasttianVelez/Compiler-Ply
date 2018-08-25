@@ -3,7 +3,7 @@ Creacion de un analizador lexico para reconocer operaciones en una calculadora
 
 
 Sebastian Velez Montoya
-
+@SebasttianVelez
 git clone https://github.com/SebasttianVelez/Compiler-Ply
 '''
 
