@@ -85,8 +85,8 @@ tokens = (
 	'FALSE',
 
 	#Simbols
-	'EQUAL'
-	'NOT_EQUAL'
+	'EQUAL',
+	'NOT_EQUAL',
 	'L_PAREN',
 	'R_PAREN',
 	'DIFERENT',
@@ -94,6 +94,7 @@ tokens = (
 	'DIVIDE',
 	'GREATER',
 	'GREATER_EQUAL',
+	'SMALLER',
 	'SMALLER_EQUAL',
 	'EQUAL_EQUAL',
 	'MORE_EQUAL',
@@ -121,7 +122,7 @@ tokens = (
 	'AND_EQUAL',
 	'AND',
 	'OR',
-	'XOR'
+	'XOR',
 	'HASHTAG',
 	'ASTERISK',
 
@@ -141,7 +142,48 @@ t_COMMA  = r','
 t_LPAREN = r'\('
 t_RPAREN  = r'\)'
 
-#Reconoce numeros
+
+
+t_L_PAREN = r'('
+t_R_PAREN = r')'
+t_EQUAL = r'='
+t_DIFERENT = r'!='
+t_DOLAR = r'$'
+t_DIVIDE = r'/'
+t_GREATER = r'>'
+t_SMALLER = r'<'
+t_GREATER_EQUAL = r'>='
+t_SMALLER_EQUAL = r'<='
+t_EQUAL_EQUAL = r'=='
+t_MORE_EQUAL = r''
+t_MINUS_EQUAL = r''
+t_OR_EQUAL = r''
+t_POW = r''
+t_POW_EQUAL = r''
+t_WHITE_SPACE = r''
+t_COMMENT = r''
+t_INIT_COMMENT = r''
+t_FINAL_COMMENT = r''
+t_PLUS_PLUS = r''
+t_INIT_TAG = r''
+t_FINAL_TAG = r''
+t_POINT = r''
+t_POINT_AND_COME = r''
+t_MORE = r''
+t_MINUS = r''
+t_SINGLE_QUOTES = r''#COMILLASIMPLE = r''
+t_DOUBLE_COMILLAS = r''#COMILLASDOBLE = r''
+t_UNDERSCORE = r''#GUIONBAJO
+t_L_SQUARE_BRACKET = r''#LCORCHETE = r''
+t_R_SQUARE_BRACKET = r''#RCORCHETE = r''
+t_BARRA = r''#BARRA = r''
+t_AND_EQUAL = r''
+t_AND = r''
+t_OR = r''
+t_XOR = r''
+t_HASHTAG = r''
+t_ASTERISK = r''
+#Reconoce numeros.
 
 def t_NUMBER(t):
     r'\d+(\.\d+)?'
