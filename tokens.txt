@@ -1,0 +1,5 @@
+http://php.net/manual/es/tokens.php lista de tokens de php completa
+
+https://diego.com.es/programacion-orientada-a-objetos-en-php objetos ejemplos
+
+https://byspel.com/palabras-reservadas-php/ lista de palabras reservadas
