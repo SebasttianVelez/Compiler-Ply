@@ -1,3 +1,12 @@
+'''
+
+Analizador Lexico MINI-PHP
+
+'''
+
+import ply.lex as lex
+import sys
+
 
 #list of tokens names
 
@@ -182,24 +191,197 @@ def t_NUMBER(t):
     return t
 
 #Palabras Reservadas
-def t_SEN(t):
-	r'sen'
+def t_class(t):
+	r'class'
 	return t
-def t_COS(t):
-	r'cos'
+def t_break(t):
+	r'break'
 	return t
-def t_TAN(t):
-	r'tan'
+def t_abstract(t):
+	r'abstract'
 	return t
-def t_COT(t):
-	r'cot'
+def t_AND(t):
+	r'AND'
 	return t
-def t_SEC(t):
-	r'sec'
+def t_array(t):
+	r'array'
 	return t
-def t_CSC(t):
-	r'csc'
+def t_as(t):
+	r'as'
 	return t
+def t_switch(t):
+	r'switch'
+	return t
+def t_case(t):
+	r'case'
+	return t
+def t_clone(t):
+	r'clone'
+	return t
+def t_const(t):
+	r'const'
+	return t
+def t___construct(t):
+	r'__construct'
+	return t
+def t_continue(t):
+	r'continue'
+	return t
+def t_die(t):
+	r'die'
+	return t
+def t_do(t):
+	r'do'
+	return t
+def t_echo(t):
+	r'echo'
+	return t
+def t_else(t):
+	r'else'
+	return t
+def t_elseif(t):
+	r'elseif'
+	return t
+def t_empty(t):
+	r'empty'
+	return t
+def t_eddeclare(t):
+	r'eddeclare'
+	return t
+def t_endif(t):
+	r'endif'
+	return t
+def t_endwhile(t):
+	r'endwhile'
+	return t
+def t_endfor(t):
+	r'endfor'
+	return t
+def t_endforeach(t):
+	r'endforeach'
+	return t
+def t_endswitch(t):
+	r'endswitch'
+	return t
+def t_eval(t):
+	r'eval'
+	return t
+def t_exit(t):
+	r'exit'
+	return t
+def t_extends(t):
+	r'extends'
+	return t
+def t_final(t):
+	r'final'
+	return t
+def t_finally(t):
+	r'finally'
+	return t
+def t_for(t):
+	r'for'
+	return t
+def t_foreach(t):
+	r'foreach'
+	return t
+def t_function(t):
+	r'function'
+	return t
+def t_global(t):
+	r'global'
+	return t
+def t_goto(t):
+	r'goto'
+	return t
+def t_if(t):
+	r'if'
+	return t
+def t_implements(t):
+	r'implements'
+	return t
+def t_include(t):
+	r'include'
+	return t
+def t_include_once(t):
+	r'include_once'
+	return t
+def t_instanceof(t):
+	r'instanceof'
+	return t
+def t_interface(t):
+	r'interface'
+	return t
+def t_isset(t):
+	r'isset'
+	return t
+def t_list(t):
+	r'list'
+	return t
+def t_namespace(t):
+	r'namespace'
+	return t
+def t_null(t):
+	r'null'
+	return t
+def t_or(t):
+	r'or'
+	return t
+def t_print(t):
+	r'print'
+	return t
+def t_private(t):
+	r'private'
+	return t
+def t_public(t):
+	r'public'
+	return t
+def t_protected(t):
+	r'protected'
+	return t
+def t_require(t):
+	r'require'
+	return t
+def t_require_once(t):
+	r'require_once'
+	return t
+def t_return(t):
+	r'return'
+	return t
+def t_static(t):
+	r'static'
+	return t
+def t_throw(t):
+	r'throw'
+	return t
+def t_try(t):
+	r'try'
+	return t
+def t_unset(t):
+	r'unset'
+	return t
+def t_use(t):
+	r'use'
+	return t
+def t_void(t):
+	r'void'
+	return t
+def t_var(t):
+	r'var'
+	return t
+def t_while(t):
+	r'while'
+	return t
+def t_xor(t):
+	r'xor'
+	return t
+def t_TRUE(t):
+	r'TRUE'
+	return t
+def t_FALSE(t):
+	r'FALSE'
+	return t
+
+
 
 def t_ID(t):
     r'\w+(_\d\w)*'
@@ -226,11 +408,6 @@ if __name__ == '__main__':
 		fin = 'data.op'
 	f = open(fin, 'r')
 	data = f.read()
-	print (data)
-	lexer.input(data)
-	test(data, lexer)
-	input()
-
 	print (data)
 	lexer.input(data)
 	test(data, lexer)
