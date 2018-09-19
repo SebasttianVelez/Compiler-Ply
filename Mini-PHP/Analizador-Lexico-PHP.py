@@ -381,11 +381,14 @@ def t_FALSE(t):
 	r'FALSE'
 	return t
 
-
+def t_VARIABLE(t):
+    r'\$w+(_\d\w)*'
+    return t
 
 def t_ID(t):
     r'\w+(_\d\w)*'
     return t
+
 
 def t_error(t):
     print ("Lexical error: " + str(t.value[0]))
