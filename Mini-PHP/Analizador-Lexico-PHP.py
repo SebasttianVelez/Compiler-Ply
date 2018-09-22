@@ -4,10 +4,6 @@ Analizador Lexico MINI-PHP
 
 '''
 
-import ply.lex as lex
-import sys
-
-
 #list of tokens names
 
 import ply.lex as lex
