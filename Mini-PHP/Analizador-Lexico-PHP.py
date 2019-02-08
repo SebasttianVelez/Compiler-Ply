@@ -371,18 +371,32 @@ def t_FALSE(t):
 	return t
 
 def t_VARIABLE(t):
-    r'\$w+(_\d\w)*'
+    r'\$[A-Za-z_][\w_\d]*'
     return t
-def t_INIT_COMMENT(t):
-    r'\//(d\w)*\n'  #FALTA AGREGAR SIMBOLOS
+def t_COMMENTONELINE(t):
+    r'//.*'
+    pass
+def t_COMMENTMULTIPLELINE(t):
+    r'/\*(.|\n)*?\*/'
+    pass
+
+def t_NUMBER(t):
+    r'-?\d+(\.\d+)?'
+    t.value = float(t.value)
     return t
-
-
-
+#Definciion para ID que se podrá usar en la declaración de funciones
+def t_ID(t):
+    r'\w+(_\d\w)*'
+    return t
+#Retorna el salto de linea
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+    
 def t_error(t):
     print ("Lexical error: " + str(t.value[0]))
     t.lexer.skip(1)
-
+    
 def test(data, lexer):
 	lexer.input(data)
 	while True:
@@ -391,13 +405,15 @@ def test(data, lexer):
 			break
 		print (tok)
 
+
 lexer = lex.lex()
 
+ #Funcion principal del sistema
 if __name__ == '__main__':
 	if (len(sys.argv) > 1):
 		fin = sys.argv[1]
 	else:
-		fin = 'data.op'
+		fin = 'pruebaPHP.php'
 	f = open(fin, 'r')
 	data = f.read()
 	print (data)
