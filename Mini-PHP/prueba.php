@@ -1,18 +1,12 @@
 <?php
-require('somefile.php');
+require('document.php');
 $variable;
-$t;
 $suma;
 $booleano = true;
+$apellido = false;
+$i = 2;
 
-echo "esto es un print, se muestra en pantalla";
-echo $verb;
-
-if($a < 20){
-  $v1 = 1;
-  echo $v1;
-  $suma = $v2 + $v3;
-}
+$a = $i + $apellido;
 
 class ClaseSencilla{
   public $var = 0;
@@ -22,6 +16,17 @@ class ClaseSencilla{
     return 0;
   }
 }
+
+
+echo "Ejemplo de print";
+echo $verb;
+
+if($a < 20){
+  $v1 = 1;
+  echo $v1;
+  $suma = $v2 + $v3;
+}
+
 
 public function recursividad($a){
   **$d;
@@ -64,10 +69,11 @@ public function recursividad($a){
 
 }
 
+
 prueba $a=new prueba(VOID);
+ /*
 
  //esto es un comentario corto print
- /*
   * esto es un comentario largo deberia
   * reconocerlo todo por saltos de linea
   * que haga

@@ -3,6 +3,8 @@ import ply.yacc as yacc
 from Analizador_lexico import tokens
 TRUE = 1
 
+#STRING
+
 
 precedence = (
     ('left', 'INCLUDE', 'REQUIRE'),
@@ -44,6 +46,8 @@ def p_declaration(p):
 				   | typeclass
 	'''
 	pass
+
+
 
 def p_echo_stmt(p):
 	'''echo_stmt : echo_stmt ECHO STRING SEMI
