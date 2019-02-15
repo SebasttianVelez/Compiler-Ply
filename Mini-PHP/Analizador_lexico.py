@@ -11,6 +11,7 @@ tokens = (
     'INSTANCEOF','INSTEADOF','INTERFACE','ISSET','LIST','NAMESPACE','NEW','OR',
     'PRINT','PRIVATE','PROTECTED','PUBLIC','REQUIRE','REQUIRE_ONCE','RETURN',
     'STATIC','SWITCH','THROW','TRAIT','TRY','UNSET','USE','VAR','WHILE','XOR',
+    'NULL',
 
     #boolean
     'TRUE','FALSE',
@@ -26,10 +27,17 @@ tokens = (
     'COMMENTS','COMMENTS_C99','ID','IDVAR','NUM','STRING','VOID',
 )
 
+
+# RE Tokens
+# Ignored characters
 t_ignore = " \t"
 
 def t_VOID(t):
     r'VOID|void'
+    return t
+
+def t_NULL(t):
+    r'NULL|null'
     return t
 
 def t_newline(t):
@@ -37,10 +45,11 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    print ("\t ERROR: Illegal character")
-    print ("\t\tLine: "+str(t.lexer.lineno)+"\t=> " + t.value[0])
+    print ("Lexical error: " + str(t.value[0]))
     t.lexer.skip(1)
 
+
+# RE OPEN AND CLOSE TAG
 def t_OPENTAG(t):
     r'(<\?(php)?)'
     return t
@@ -49,6 +58,8 @@ def t_CLOSETAG(t):
     r'\?>'
     return t
 
+
+# RE RESERVERD WORDS LIST
 def t___HALT_COMPILER(t):
     r'__halt_compiler'
     return t
@@ -317,6 +328,7 @@ def t_FALSE(t):
     r'false'
     return t
 
+# RE SYMBOLS
 t_PLUS      = r'\+'
 t_MINUS     = r'-'
 t_TIMES     = r'\*'
@@ -372,6 +384,9 @@ def t_DOT_DOT(t):
     r'::'
     return t
 
+
+
+
 def t_COMMENTS(t):
     r'\/\*([^*]|\*[^\/])*(\*)+\/'
     t.lexer.lineno += t.value.count('\n')
@@ -381,7 +396,7 @@ def t_COMMENTS_C99(t):
     t.lexer.lineno += 1
 
 def t_IDVAR(t):
-    r'\$\w+(\d\w)*'
+    r'\$[a-zA-Z_][a-zA-Z0-9_]*'
     return t
 
 def t_NUM(t):
@@ -390,7 +405,7 @@ def t_NUM(t):
     return t
 
 def t_ID(t):
-    r'\w+(\w\d)*'
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
     return t
 
 def t_STRING(t):
@@ -401,20 +416,14 @@ def t_STRING(t):
 lexer = lex.lex()
 
 if __name__ == '__main__':
-
-
+    # Abrir archivo
     scriptfile = open('prueba.php')
     scriptdata = scriptfile.read()
-
     lexer.input(scriptdata)
 
-    print ("INICIA ANALISIS LEXICO")
-    i = 1
     while True:
         tok = lexer.token()
         if not tok:
             break
-        print ("\t"+str(i)+" - "+"Line: "+str(tok.lineno)+"\t"+str(tok.type)+"\t-->  "+str(tok.value))
-        i += 1
-
-    print ("TERMINA ANALISIS LEXICO")
+        print(tok)
+    

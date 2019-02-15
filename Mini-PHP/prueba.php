@@ -5,8 +5,8 @@ $suma;
 $booleano = true;
 $apellido = false;
 $i = 2;
-
 $a = $i + $apellido;
+$negro = "vacinga";
 
 class ClaseSencilla{
   public $var = 0;
@@ -67,6 +67,10 @@ public function recursividad($a){
     echo "*&nbsp&nbsp";
   }
 
+}
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i;
 }
 
 

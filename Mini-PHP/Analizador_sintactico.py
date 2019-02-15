@@ -1,10 +1,8 @@
 import sys
 import ply.yacc as yacc
 from Analizador_lexico import tokens
-TRUE = 1
 
-#STRING
-
+VERBOSE = 1
 
 precedence = (
     ('left', 'INCLUDE', 'REQUIRE'),
@@ -24,6 +22,7 @@ precedence = (
     ('right', 'PRIVATE', 'PROTECTED', 'PUBLIC'),
 )
 
+
 def p_program(p):
     'program : OPENTAG declaration_list CLOSETAG'
     pass
@@ -37,17 +36,17 @@ def p_declaration_list(p):
 def p_declaration(p):
 	'''declaration : var_declaration
 				   | fun_declaration
+				   | fun_call
 				   | area fun_declaration
 				   | header_declaration
 				   | class_declaration
 				   | echo_stmt
+				   | unset_stmt
 				   | selection_stmt
 			       | iteration_stmt
 				   | typeclass
 	'''
 	pass
-
-
 
 def p_echo_stmt(p):
 	'''echo_stmt : echo_stmt ECHO STRING SEMI
@@ -57,6 +56,10 @@ def p_echo_stmt(p):
 				 | echo_stmt ECHO boolean SEMI
 				 | echo_stmt ECHO fun_declaration SEMI
 	'''
+	pass
+def p_unset_stmt(p):
+	'unset_stmt : UNSET LPAREN IDVAR RPAREN SEMI'		
+	
 	pass
 
 def p_header_declaration(p):
@@ -89,26 +92,33 @@ def p_area(p):
 
 def p_var_declaration(p):
 	'''var_declaration : IDVAR SEMI var_declaration
-                       | IDVAR SEMI
+					   | IDVAR SEMI
                        | TIMESTIMES IDVAR SEMI
                        | TIMESTIMES IDVAR SEMI var_declaration
                        | IDVAR EQUAL NUM SEMI var_declaration
                        | IDVAR EQUAL NUM SEMI
+					   | IDVAR EQUAL NULL SEMI var_declaration
+                       | IDVAR EQUAL NULL SEMI
                        | IDVAR EQUAL boolean SEMI var_declaration
                        | IDVAR EQUAL boolean SEMI
                        | IDVAR EQUAL IDVAR SEMI var_declaration
                        | IDVAR EQUAL IDVAR SEMI
                        | AMPERSANT IDVAR SEMI var_declaration
                        | AMPERSANT IDVAR EQUAL IDVAR SEMI  selection_stmt
+					   | IDVAR EQUAL AMPERSANT IDVAR SEMI
+					   | IDVAR EQUAL STRING SEMI
                        | AMPERSANT IDVAR SEMI
                        | IDVAR EQUAL simple_expression SEMI
 	'''
 	pass
 
 def p_fun_declaration(p):
-	'''fun_declaration : FUNCTION ID LPAREN params RPAREN
-					   | FUNCTION ID LPAREN params RPAREN compount_stmt
+	'''fun_declaration : FUNCTION ID LPAREN params RPAREN compount_stmt
 	'''
+	pass
+
+def p_fun_call(p):
+	'fun_call : ID LPAREN params RPAREN SEMI'
 	pass
 
 def p_params(p):
@@ -184,7 +194,7 @@ def p_selection_stmt_2(p):
 	pass
 
 def p_iteration_stmt_1(p):
-	'iteration_stmt : FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN statement '
+	'iteration_stmt : FOR LPAREN var_declaration expression SEMI additive_expression RPAREN statement'
 	pass
 def p_iteration_stmt_2(p):
 	'iteration_stmt : WHILE LPAREN expression RPAREN statement'
@@ -303,24 +313,27 @@ def p_empty(p):
 	pass
 
 def p_error(p):
-    if TRUE:
+    if VERBOSE:
         if p is not None:
-            print ("\t ERROR: Syntax error - Unexpected token" )
-            print ("\t\tLine: "+str(p.lexer.lineno)+"\t=> "+str(p.value))
+            print("Error sintáctico en la línea: "+str(p.lexer.lineno)+", Token inesperdo: "+str(p.value))
+            
         else:
-            print ("\t ERROR: Syntax error")
-            print ("\t\tLine:  "+str(Analizador_lexico.lexer.lineno))
+            print("Error sintáctico en la línea: "+str(Analizador_lexico.lexer.lineno))
+            
 
     else:
         raise Exception('syntax', 'error')
 
 parser = yacc.yacc()
-#parser
-if __name__ == '__main__':
-	# Abrir archivos
-    scriptfile = open('prueba.php')
-    scriptdata = scriptfile.read()
 
-    print (" Inicia análisis sintáctico")
-    parser.parse(scriptdata, tracking=False)
-    print (" Finaliza con exito analisis sintáctico")
+
+if __name__ == '__main__':
+    #if (len(sys.argv) > 1):
+    #script = sys.argv[1]
+    print("Inicia Analisis Sintáctico")
+    scriptfile = open("prueba.php")
+    scriptdata = scriptfile.read()
+    parser.parse(scriptdata, tracking=True)
+    print("Ha terminado con éxito amiguito")
+
+    
