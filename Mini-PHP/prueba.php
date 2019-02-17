@@ -1,6 +1,6 @@
 <?php
 require('document.php');
-$variable;
+$bariable=7;
 $suma;
 $booleano = true;
 $apellido = false;
@@ -8,6 +8,26 @@ $i = 2;
 $a = $i + $apellido;
 $negro = "vacinga";
 
+function saludar($a, $b){
+    if ($a<3){
+      $a++;
+     // $b++;
+    }
+    else
+      return ($a+$b)/($a-$b);
+}
+
+
+function despedirse($despedida){
+    echo "Nos vemos otro día, $despedida";
+}
+
+// Función de envoltura
+function decirEsto($esto){
+    echo $esto;
+}
+
+$var = 'saludar';
 class ClaseSencilla{
   public $var = 0;
   public $var1 = 0;
@@ -26,7 +46,21 @@ if($a < 20){
   echo $v1;
   $suma = $v2 + $v3;
 }
+function foo() {
+    echo "En foo()<br />\n";
+}
 
+
+// Esta es una función de envoltura alrededor de echo
+function hacerecho($cadena)
+{
+    echo $cadena;
+}
+$func = 'foo';
+
+$func = 'bar';
+
+$func = 'hacerecho';
 
 public function recursividad($a){
   **$d;
@@ -65,23 +99,14 @@ public function recursividad($a){
   while($j<=$i){
     $v1 = $variable + $v1;
     echo "*&nbsp&nbsp";
+    $j++;
   }
 
 }
 
-for ($i = 1; $i <= 10; $i++) {
-    echo $i;
-}
-
 
 prueba $a=new prueba(VOID);
- /*
 
- //esto es un comentario corto print
-  * esto es un comentario largo deberia
-  * reconocerlo todo por saltos de linea
-  * que haga
- */
 
 
 ?>

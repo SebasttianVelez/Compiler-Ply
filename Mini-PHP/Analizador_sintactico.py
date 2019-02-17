@@ -68,6 +68,7 @@ def p_header_declaration(p):
     '''
 	pass
 
+
 def p_class_declaration(p):
 	'''class_declaration : area CLASS ID LBLOCK attribute RBLOCK
 						 | CLASS ID LBLOCK attribute RBLOCK
@@ -328,8 +329,6 @@ parser = yacc.yacc()
 
 
 if __name__ == '__main__':
-    #if (len(sys.argv) > 1):
-    #script = sys.argv[1]
     print("Inicia Analisis Sintáctico")
     scriptfile = open("prueba.php")
     scriptdata = scriptfile.read()
